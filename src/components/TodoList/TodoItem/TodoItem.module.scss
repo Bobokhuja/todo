@@ -1,0 +1,76 @@
+.Item {
+  background: #FFFFFF;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 18px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Name {
+  margin: 0;
+}
+
+.Right {
+  display: flex;
+  align-items: center;
+}
+
+.Delete,
+.Complete,
+.More {
+  padding: 0;
+  border: none;
+  background: none;
+  margin-left: 18px;
+  cursor: pointer;
+}
+
+.Complete {
+  width: 30px;
+  height: 30px;
+  background: #FFFFFF;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  position: relative;
+  transition: all .2s;
+
+  &:hover {
+    background: darken(#fff, 2%);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  }
+
+  &:focus {
+    outline: none;
+    background: darken(#fff, 8%);
+  }
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.More {
+  transition: all .2s;
+}
+
+.Active {
+  transform: rotate(180deg);
+}
+
+.Description {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #777777;
+  margin-top: 16px;
+}

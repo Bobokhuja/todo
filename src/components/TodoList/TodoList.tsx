@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import classes from './TodoList.module.scss'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { createTodo } from '../../features/todo/todoSlice'
 import { ITodo } from '../../models/ITodo'
+import TodoItem from './TodoItem/TodoItem'
 
 function TodoList() {
   const {todos} = useAppSelector(state => state.todo)
@@ -13,8 +14,16 @@ function TodoList() {
   }
 
   return (
-    <div>
-    </div>
+    <ul className={classes.List}>
+      {todos.map(todo =>
+        <TodoItem
+          id={todo.id}
+          name={todo.name}
+          description={todo.description}
+          status={todo.status}
+        />
+      )}
+    </ul>
   )
 }
 
