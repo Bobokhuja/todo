@@ -3,6 +3,7 @@ import classes from './App.module.scss'
 import TodoList from './components/TodoList/TodoList'
 import Header from './components/Header/Header'
 import Button from './components/UI/Button/Button'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         Создать задачу
       </Button>
       <TodoList/>
+      <Footer/>
     </div>
   )
 }
