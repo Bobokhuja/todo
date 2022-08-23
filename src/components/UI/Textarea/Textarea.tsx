@@ -1,34 +1,33 @@
-import classes from './Input.module.scss'
+import classes from './Textarea.module.scss'
 import { ChangeEventHandler, HTMLInputTypeAttribute } from 'react'
 
-interface IInput {
-  type: HTMLInputTypeAttribute
+interface ITextarea {
   value: string
   placeholder: string
-  onChange: ChangeEventHandler<HTMLInputElement>
+  onChange: ChangeEventHandler<HTMLTextAreaElement>
   className: string
   required?: boolean
 }
 
-function Input({type, onChange, value, placeholder, className, required}: IInput) {
+function Textarea({onChange, value, placeholder, className, required}: ITextarea) {
   const cls = [
-    classes.Input,
+    classes.Textarea,
     className || ''
   ]
   return (
     <div className={cls.join(' ')}>
       <label>
-        <input
-          type={type}
+        <textarea
           value={value}
           onChange={onChange}
           placeholder={placeholder}
           required={required}
-        />
-        {required && <span>*</span>}
+        >
+          {value}
+        </textarea>
       </label>
     </div>
   )
 }
 
-export default Input
+export default Textarea

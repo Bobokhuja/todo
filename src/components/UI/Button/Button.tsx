@@ -2,19 +2,20 @@ import classes from './Button.module.scss'
 import { ReactNode } from 'react'
 
 interface IButton {
-  onClick?: () => void
+  type?: 'submit' | 'button'
+  onClick?: (any: any) => void
   children: ReactNode
   className?: string
 }
 
-function Button({onClick, children, className}: IButton) {
+function Button({type = 'button', onClick, children, className}: IButton) {
   const cls = [
     classes.Button,
     className ? className : ''
   ]
   return (
     <button
-      type="button"
+      type={type}
       className={cls.join(' ')}
       onClick={onClick}
     >

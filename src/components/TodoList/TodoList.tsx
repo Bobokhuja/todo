@@ -6,17 +6,12 @@ import TodoItem from './TodoItem/TodoItem'
 
 function TodoList() {
   const {todos} = useAppSelector(state => state.todo)
-  const dispatch = useAppDispatch()
-
-  const nextTodoId = (todos: ITodo[]) => {
-    return todos.reduce((maxId: number, todo) =>
-      Math.max(maxId, todo.id), 1)
-  }
 
   return (
     <ul className={classes.List}>
       {todos.map(todo =>
         <TodoItem
+          key={todo.id}
           id={todo.id}
           name={todo.name}
           description={todo.description}
