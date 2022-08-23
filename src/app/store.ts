@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import { todoSlice } from '../features/todo/todoSlice'
+import { filterSlice } from '../features/filter/filterSlice'
 
 export const store = configureStore({
   reducer: {
-    todo: todoSlice.reducer
+    todo: todoSlice.reducer,
+    filter: filterSlice.reducer
   },
 })
 

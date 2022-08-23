@@ -1,8 +1,17 @@
 import classes from './Footer.module.scss'
 import Input from '../UI/Input/Input'
-import { ChangeEventHandler, useState } from 'react'
-import Radio, { IRadio } from '../UI/Radio/Radio'
+import { ChangeEventHandler, KeyboardEventHandler, useState } from 'react'
+import Radio from '../UI/Radio/Radio'
 import radio from '../UI/Radio/Radio'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { changeStatus, searchTodo, statusType } from '../../features/filter/filterSlice'
+
+interface IRadio {
+  label: string,
+  name: string,
+  value: statusType
+  checked: boolean
+}
 
 function Footer() {
   const [search, setSearch] = useState<string>('')
@@ -22,10 +31,12 @@ function Footer() {
     {
       label: 'Не выполненные',
       name: 'filter',
-      value: 'uncompleted',
+      value: 'active',
       checked: false
     },
   ])
+  const dispatch = useAppDispatch()
+  const {status} = useAppSelector(state => state.filter)
 
   const onChangeRadioHandler = (value: string) => {
     setRadioList(radioList.map(radio => {
@@ -36,6 +47,12 @@ function Footer() {
     }))
   }
 
+  const onKeyUpHandler: KeyboardEventHandler<HTMLInputElement> = event => {
+    if (event.code === 'Enter') {
+      dispatch(searchTodo(search))
+    }
+  }
+
   return (
     <footer className={classes.Footer}>
       <div className={classes.Wrap}>
@@ -43,8 +60,11 @@ function Footer() {
           type="text"
           value={search}
           placeholder="Поиск..."
-          onChange={(event) => setSearch(event.target.value)}
+          onChange={
+            (event) => setSearch(event.target.value)
+          }
           className={classes.Input}
+          onKeyUp={onKeyUpHandler}
         />
         <form>
           {radioList.map(radio =>
@@ -53,11 +73,10 @@ function Footer() {
               label={radio.label}
               name={radio.name}
               value={radio.value}
-              onChange={() => onChangeRadioHandler(radio.value)}
-              checked={radio.checked}
+              onChange={() => dispatch(changeStatus(radio.value))}
+              checked={status === radio.value}
             />
           )}
-
         </form>
       </div>
     </footer>

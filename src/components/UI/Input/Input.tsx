@@ -1,5 +1,5 @@
 import classes from './Input.module.scss'
-import { ChangeEventHandler, HTMLInputTypeAttribute } from 'react'
+import { ChangeEventHandler, HTMLInputTypeAttribute, KeyboardEventHandler } from 'react'
 
 interface IInput {
   type: HTMLInputTypeAttribute
@@ -8,9 +8,10 @@ interface IInput {
   onChange: ChangeEventHandler<HTMLInputElement>
   className: string
   required?: boolean
+  onKeyUp?: KeyboardEventHandler<HTMLInputElement>
 }
 
-function Input({type, onChange, value, placeholder, className, required}: IInput) {
+function Input({type, onChange, value, placeholder, className, required, onKeyUp}: IInput) {
   const cls = [
     classes.Input,
     className || ''
@@ -24,6 +25,7 @@ function Input({type, onChange, value, placeholder, className, required}: IInput
           onChange={onChange}
           placeholder={placeholder}
           required={required}
+          onKeyUp={onKeyUp}
         />
         {required && <span>*</span>}
       </label>
