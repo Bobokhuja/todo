@@ -17,13 +17,12 @@ export const todoSlice = createSlice({
       state.todos.push(action.payload)
     },
     deleteTodo(state, action: PayloadAction<number>) {
-      state.todos = state.todos.filter(todo => todo.id === action.payload)
+      state.todos = state.todos.filter(todo => todo.id !== action.payload)
     },
-    changeStatus(state, action: PayloadAction<{id: number, status: boolean}>) {
+    changeStatus(state, action: PayloadAction<number>) {
       state.todos = state.todos.map(todo => {
-        const {id, status} = action.payload
-        if (todo.id === id) {
-          return {...todo, status}
+        if (todo.id === action.payload) {
+          return {...todo, status: !todo.status}
         }
         return todo
       })
