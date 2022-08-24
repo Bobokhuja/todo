@@ -2,11 +2,11 @@ import classes from './Footer.module.scss'
 import Input from '../UI/Input/Input'
 import Radio from '../UI/Radio/Radio'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { changeStatus, searchTodo, StatusFilter } from '../../features/filter/filterSlice'
+import { changeStatus, searchTodo, StatusFilter } from '../../features/filters/filterSlice'
 
 function Footer() {
   const dispatch = useAppDispatch()
-  const {status, search} = useAppSelector(state => state.filter)
+  const {status, search} = useAppSelector(state => state.filters)
 
   return (
     <footer className={classes.Footer}>

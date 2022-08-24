@@ -5,7 +5,7 @@ import { useState } from 'react'
 import Textarea from '../../UI/Textarea/Textarea'
 import Button from '../../UI/Button/Button'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { createTodo } from '../../../features/todo/todoSlice'
+import { todoAdded } from '../../../features/todos/todosSlice'
 import { ITodo } from '../../../models/ITodo'
 
 const nextTodoId = (todos: ITodo[]) => {
@@ -17,14 +17,14 @@ const nextTodoId = (todos: ITodo[]) => {
 function ModalCreate({onHide, isShow}: { isShow: boolean, onHide: () => void }) {
   const [name, setName] = useState<string>('')
   const [description, setDescription] = useState<string>('')
-  const {todos} = useAppSelector(state => state.todo)
+  const {todos} = useAppSelector(state => state.todos)
   const dispatch = useAppDispatch()
 
   const onCreateHandler = (event: any) => {
     event.preventDefault()
 
     if (name) {
-      dispatch(createTodo({
+      dispatch(todoAdded({
         id: nextTodoId(todos),
         name,
         description,
