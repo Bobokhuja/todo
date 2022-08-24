@@ -35,34 +35,32 @@ function ModalCreate({onHide, isShow}: { isShow: boolean, onHide: () => void }) 
   }
 
   return (
-    <section className={classes.Modal}>
-      <Modal isShow={isShow} onHide={onHide}>
-        <h2 className={classes.Title}>Создать Todo</h2>
+    <Modal isShow={isShow} onHide={onHide}>
+      <h2 className={classes.Title}>Создать Todo</h2>
 
-        <form>
-          <Input
-            type="text"
-            value={name}
-            placeholder="Название Todo"
-            onChange={event => setName(event.target.value)}
-            className={classes.Input}
-            required={true}
-          />
-          <Textarea
-            value={description}
-            placeholder="Описание"
-            onChange={event => setDescription(event.target.value)}
-            className={classes.Textarea}
-            required={false}
-          />
-          <Button
-            type="submit"
-            className={classes.Button}
-            onClick={onCreateHandler}
-          >Создать</Button>
-        </form>
-      </Modal>
-    </section>
+      <form>
+        <Input
+          type="text"
+          value={name}
+          placeholder="Название Todo"
+          onChange={event => setName(event.target.value)}
+          className={classes.Input}
+          required={true}
+        />
+        <Textarea
+          value={description}
+          placeholder="Описание"
+          onChange={event => setDescription(event.target.value)}
+          className={classes.Textarea}
+          required={false}
+        />
+        <Button
+          type="submit"
+          className={classes.Button}
+          onClick={onCreateHandler}
+        >Создать</Button>
+      </form>
+    </Modal>
   )
 }
 

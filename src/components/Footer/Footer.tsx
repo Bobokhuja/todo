@@ -1,38 +1,10 @@
 import classes from './Footer.module.scss'
 import Input from '../UI/Input/Input'
-import { KeyboardEventHandler, useState } from 'react'
 import Radio from '../UI/Radio/Radio'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { changeStatus, searchTodo, statusType } from '../../features/filter/filterSlice'
-
-interface IRadio {
-  label: string,
-  name: string,
-  value: statusType
-  checked: boolean
-}
+import { changeStatus, searchTodo, StatusFilter } from '../../features/filter/filterSlice'
 
 function Footer() {
-  const [radioList, setRadioList] = useState<IRadio[]>([
-    {
-      label: 'Все',
-      name: 'filter',
-      value: 'all',
-      checked: true
-    },
-    {
-      label: 'Выполненные',
-      name: 'filter',
-      value: 'completed',
-      checked: false
-    },
-    {
-      label: 'Не выполненные',
-      name: 'filter',
-      value: 'active',
-      checked: false
-    },
-  ])
   const dispatch = useAppDispatch()
   const {status, search} = useAppSelector(state => state.filter)
 
@@ -49,16 +21,27 @@ function Footer() {
           className={classes.Input}
         />
         <form>
-          {radioList.map(radio =>
-            <Radio
-              key={radio.value}
-              label={radio.label}
-              name={radio.name}
-              value={radio.value}
-              onChange={() => dispatch(changeStatus(radio.value))}
-              checked={status === radio.value}
-            />
-          )}
+          <Radio
+            label="Все"
+            name="filter"
+            value={StatusFilter.All}
+            onChange={() => dispatch(changeStatus('all'))}
+            checked={status === StatusFilter.All}
+          />
+          <Radio
+            label="Выполненные"
+            name="filter"
+            value={StatusFilter.Completed}
+            onChange={() => dispatch(changeStatus('completed'))}
+            checked={status === StatusFilter.Completed}
+          />
+          <Radio
+            label="Не выполненные"
+            name="filter"
+            value={StatusFilter.Active}
+            onChange={() => dispatch(changeStatus('active'))}
+            checked={status === StatusFilter.Active}
+          />
         </form>
       </div>
     </footer>

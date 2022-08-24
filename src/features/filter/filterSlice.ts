@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ITodo } from '../../models/ITodo'
 
 export type statusType = 'all' | 'active' | 'completed'
 

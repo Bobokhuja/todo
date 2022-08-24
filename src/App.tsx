@@ -5,7 +5,6 @@ import Header from './components/Header/Header'
 import Button from './components/UI/Button/Button'
 import Footer from './components/Footer/Footer'
 import ModalCreate from './components/modals/ModalCreate/ModalCreate'
-import { CSSTransition } from 'react-transition-group'
 
 function App() {
   const [isShowModal, setIsShowModal] = useState<boolean>(false)
@@ -21,18 +20,7 @@ function App() {
       </Button>
       <TodoList/>
       <Footer/>
-      <CSSTransition
-        in={isShowModal}
-        timeout={500}
-        unmountOnExit
-        mountOnEnter
-        classNames={{
-          enterActive: classes.EnterActive,
-          exitActive: classes.ExitActive
-        }}
-      >
-        <ModalCreate isShow={isShowModal} onHide={() => setIsShowModal(false)} />
-      </CSSTransition>
+      <ModalCreate isShow={isShowModal} onHide={() => setIsShowModal(false)}/>
     </div>
   )
 }

@@ -10,6 +10,7 @@ export interface IModal {
 }
 
 function Modal({onHide, children, isShow}: IModal) {
+
   return (
     <div className={classes.Modal}>
       <CSSTransition
@@ -25,7 +26,7 @@ function Modal({onHide, children, isShow}: IModal) {
         <Backdrop onClick={() => onHide()}/>
       </CSSTransition>
       <CSSTransition
-        timeout={500}
+        timeout={300}
         in={isShow}
         unmountOnExit
         mountOnEnter
