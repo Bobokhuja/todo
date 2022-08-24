@@ -2,7 +2,7 @@ import classes from './TodoItem.module.scss'
 import { ITodo } from '../../../models/ITodo'
 import { useState } from 'react'
 import { useAppDispatch } from '../../../app/hooks'
-import { changeStatus } from '../../../features/todos/todosSlice'
+import { changeStatus, todoRename } from '../../../features/todos/todosSlice'
 import { todoDeleted } from '../../../features/todos/todosSlice'
 
 
@@ -13,7 +13,11 @@ function TodoItem({status, id, name, description}: ITodo) {
   return (
     <li className={classes.Item}>
       <header className={classes.Header}>
-        <p className={`${classes.Name} ${status ? classes.Completed : ''}`}>{name}</p>
+        <input
+          className={`${classes.Name} ${status ? classes.Completed : ''}`}
+          value={name}
+          onChange={(event) => dispatch(todoRename({id, name: event.target.value}))}
+        />
 
         <div className={classes.Right}>
           <button

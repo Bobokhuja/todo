@@ -30,6 +30,18 @@ export const todosSlice = createSlice({
     todoAdded(state, action: PayloadAction<ITodo>) {
       state.todos.push(action.payload)
     },
+    todoRename(state, action: PayloadAction<{id: number, name: string}>) {
+      const {name, id} = action.payload
+      state.todos = state.todos.map(todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            name
+          }
+        }
+        return todo
+      })
+    },
     todoDeleted(state, action: PayloadAction<number>) {
       state.todos = state.todos.filter(todo => todo.id !== action.payload)
     },
@@ -44,4 +56,4 @@ export const todosSlice = createSlice({
   }
 })
 
-export const {todoDeleted, todoAdded, changeStatus} = todosSlice.actions
+export const {todoDeleted, todoAdded, changeStatus, todoRename} = todosSlice.actions

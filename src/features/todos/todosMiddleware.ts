@@ -34,9 +34,24 @@ export const todoMiddleware = (storeAPI: any) => (next: any) => (action: any) =>
       ))
       return next(action)
     }
+    case 'todos/todoRename': {
+      const localTodos = localStorage.getItem('todos')
+      const {id, name} = action.payload
+
+      const copyTodos: ITodo[] = JSON.parse(localTodos!)
+      localStorage.setItem('todos', JSON.stringify(
+        copyTodos.map(todo => {
+          if (todo.id === id) return {...todo, name}
+          return todo
+        })
+      ))
+      return next(action)
+    }
+    default:
+      return next(action)
   }
 
-  return next(action)
+
 }
 
 // export const todosDeleteMiddleware = (storeAPI: any) => (next: any) => (action: PayloadAction<number>) => {
