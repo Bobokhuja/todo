@@ -6,7 +6,13 @@ export interface ITodoSlice {
 }
 
 const initialState: ITodoSlice = {
-  todos: JSON.parse(localStorage.getItem('todos') || '[]')
+  todos: []
+}
+
+if (localStorage.getItem('todos') === '[object Object]') {
+  localStorage.removeItem('todos')
+} else {
+  initialState.todos = JSON.parse(localStorage.getItem('todos') || '[]')
 }
 
 export const fetchPokemonByName = createAsyncThunk<any, string>(
