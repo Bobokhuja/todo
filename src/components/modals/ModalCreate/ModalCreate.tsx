@@ -1,7 +1,7 @@
 import classes from './ModalCreate.module.scss'
 import Modal from '../Modal'
 import Input from '../../UI/Input/Input'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Textarea from '../../UI/Textarea/Textarea'
 import Button from '../../UI/Button/Button'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -30,6 +30,8 @@ function ModalCreate({onHide, isShow}: { isShow: boolean, onHide: () => void }) 
         description,
         status: false
       }))
+      setName('')
+      setDescription('')
       onHide()
     }
   }
