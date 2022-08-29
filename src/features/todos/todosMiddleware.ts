@@ -8,7 +8,7 @@ export const todoMiddleware = (storeAPI: any) => (next: any) => (action: any) =>
       if (localTodos) {
         const copyTodos = JSON.parse(localTodos)
         copyTodos.push(action.payload)
-        localStorage.setItem('todos', copyTodos)
+        localStorage.setItem('todos', JSON.stringify(copyTodos))
       } else {
         localStorage.setItem('todos', JSON.stringify([action.payload]))
         console.log([action.payload])
